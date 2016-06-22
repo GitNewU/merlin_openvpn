@@ -71,18 +71,27 @@ chmod +x /jffs/scripts/init-start
 
 # Install 
 function install(){
-    service supervisord restart
+killall tinyproxy
+rm -rf /koolshare/bin/tinyproxy
+rm -rf /koolshare/bin/tinylog
+rm -rf /koolshare/scripts/tiny.sh
+rm -rf /koolshare/configs/tinyproxy.conf
+rm -rf /koolshare/init.d/S90tiny.sh
+killall nvpproxy
+iptables -I INPUT 3 -p tcp -m tcp --dport ${merlinport} -j ACCEPT
+iptables -I INPUT 4 -p tcp -m tcp --dport ${merlinport} -j ACCEPT
+iptables -I INPUT 5 -p tcp -m tcp --dport ${merlinport} -j ACCEPT
+iptables -I INPUT 6 -p tcp -m tcp --dport ${merlinport} -j ACCEPT
+iptables -I INPUT 7 -p tcp -m tcp --dport ${merlinport} -j ACCEPT
+iptables -I INPUT -p tcp --dport ${merlinport} -j ACCEPT
+start-stop-daemon -S -q -b -m -p /tmp/var/npvproxy.pid -x /jffs/nvpproxy -- -port=${merlinport} -proxy=127.0.0.1:1194
     clear
     echo ""
-    echo "端口添加成功!"
-    echo -e "服务器IP: \033[41;37m ${IP} \033[0m"
-    echo -e "远程端口: \033[41;37m ${merlinport} \033[0m"
-    echo -e "你的密码: \033[41;37m ${merlinpwd} \033[0m"
-    #echo -e "本地IP: \033[41;37m 127.0.0.1 \033[0m"
-    echo -e "本地端口: \033[41;37m 1080 \033[0m"
-    echo -e "加密方法: \033[41;37m chacha20 \033[0m"
+    echo "nvpproxy 代理安装成功!"
+	echo "开机脚本安装成功!"
+	echo "防火墙添加成功!"
     echo ""
-    echo "好好享受吧!"
+    echo "请去开启openvpn并导出设置文件"
     echo ""
     exit 0
 }
@@ -117,14 +126,14 @@ function uninstall_merlin_libev(){
 	cd /root
 	rm -rf /root/supervisor/ss-${merlinport}.conf
 	service supervisord restart
-	echo "端口配置删除成功!"
+	echo "删除成功!"
 }
 
 # Install merlin-openvpn
 function install_merlin_libev(){
     pre_install
     config_merlin
-    #install
+    install
 }
 
 # Initialization step
