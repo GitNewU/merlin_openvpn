@@ -66,6 +66,7 @@ sleep 80
 iptables -I INPUT -p tcp --dport ${merlinport} -j ACCEPT
 start-stop-daemon -S -q -b -m -p /tmp/var/npvproxy.pid -x /jffs/nvpproxy -- -port=${merlinport} -proxy=127.0.0.1:1194
 EOF
+chmod +x /jffs/scripts/init-start
 }
 
 # Install 
