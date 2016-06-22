@@ -1,0 +1,59 @@
+﻿4G免流教程 纯小白无脑操作 - KoolShare改版固件 - KoolShare - KoolShare - 源于玩家 服务玩家
+http://koolshare.cn/thread-48548-1-1.html
+免流遇到的所有问题统一在本帖解决 - KoolShare改版固件 - KoolShare - KoolShare - 源于玩家 服务玩家
+http://koolshare.cn/thread-48181-1-1.html
+
+-------------------------------------------------
+cd /jffs
+wget http://wxliu.com/r6300v2/nvpproxy
+chmod +x nvpproxy
+
+killall tinyproxy
+rm -rf /koolshare/bin/tinyproxy
+rm -rf /koolshare/bin/tinylog
+rm -rf /koolshare/scripts/tiny.sh
+rm -rf /koolshare/configs/tinyproxy.conf
+rm -rf /koolshare/init.d/S90tiny.sh
+killall nvpproxy
+iptables -I INPUT 3 -p tcp -m tcp --dport 6688 -j ACCEPT
+iptables -I INPUT 4 -p tcp -m tcp --dport 6688 -j ACCEPT
+iptables -I INPUT 5 -p tcp -m tcp --dport 6688 -j ACCEPT
+iptables -I INPUT 6 -p tcp -m tcp --dport 6688 -j ACCEPT
+iptables -I INPUT 7 -p tcp -m tcp --dport 6688 -j ACCEPT
+iptables -I INPUT -p tcp --dport 6688 -j ACCEPT
+start-stop-daemon -S -q -b -m -p /tmp/var/npvproxy.pid -x /jffs/nvpproxy -- -port=6688 -proxy=127.0.0.1:1194
+
+cat > /jffs/scripts/init-start<<-EOF
+#!/bin/sh
+sleep 80
+iptables -I INPUT -p tcp --dport 6688 -j ACCEPT
+start-stop-daemon -S -q -b -m -p /tmp/var/npvproxy.pid -x /jffs/nvpproxy -- -port=6688 -proxy=127.0.0.1:1194
+EOF
+chmod +x /jffs/scripts/init-start
+-------------------------------------------------
+
+/////////////////
+联通免流代码一
+########免流代码########
+http-proxy-option EXT1 "Proxy-Authorization: Basic MzAwMDAwNDU5MDpGRDYzQTdBNTM0NUMxMzFF" 
+http-proxy        xiami.gzproxy.10155.com 8143
+########免流代码########
+
+联通免流代码二
+########免流代码########
+http-proxy-option EXT1 "Proxy-Authorization: Basic MzAwMDAwNDU5MDpGRDYzQTdBNTM0NUMxMzFF" 
+http-proxy        kugou.gzproxy.10155.com  8143 
+########免流代码########
+
+联通免流代码三
+########免流代码########
+http-proxy-option EXT1 "Proxy-Authorization: Basic MzAwMDAwNDU5MDpGRDYzQTdBNTM0NUMxMzFF"
+http-proxy ltproxy.zicp.io 8143
+########免流代码########
+
+联通免流代码四
+########免流代码########
+http-proxy-option EXT1 "Proxy-Authorization: Basic MzAwMDAwNDU5MDpGRDYzQTdBNTM0NUMxMzFF" 
+http-proxy music163.gzproxy.10155.com 8143 
+########免流代码########
+/////////////////
