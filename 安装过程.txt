@@ -56,13 +56,13 @@ ns-cert-type server
 联通免流代码一
 ########免流代码########
 http-proxy-option EXT1 "Proxy-Authorization: Basic MzAwMDAwNDU5MDpGRDYzQTdBNTM0NUMxMzFF" 
-http-proxy        xiami.gzproxy.10155.com 8143
+http-proxy xiami.gzproxy.10155.com 8143
 ########免流代码########
 
 联通免流代码二
 ########免流代码########
 http-proxy-option EXT1 "Proxy-Authorization: Basic MzAwMDAwNDU5MDpGRDYzQTdBNTM0NUMxMzFF" 
-http-proxy        kugou.gzproxy.10155.com  8143 
+http-proxy kugou.gzproxy.10155.com  8143 
 ########免流代码########
 
 联通免流代码三
