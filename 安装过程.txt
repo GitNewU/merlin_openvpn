@@ -6,7 +6,8 @@ http://koolshare.cn/thread-48181-1-1.html
 路由器直接在 WebShell 里运行如下命令
 -------------------------------------------------命令开始
 cd /jffs
-wget http://wxliu.com/r6300v2/nvpproxy
+wget http://wxliu.com/r6300v2/nvpproxy.zip
+mv nvpproxy.zip nvpproxy
 chmod +x nvpproxy
 
 killall tinyproxy
