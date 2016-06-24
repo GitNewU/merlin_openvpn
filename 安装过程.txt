@@ -5,6 +5,7 @@ http://koolshare.cn/thread-48181-1-1.html
 
 路由器直接在 WebShell 里运行如下命令
 -------------------------------------------------命令开始
+```
 cd /jffs
 wget http://wxliu.com/r6300v2/nvpproxy.zip
 mv nvpproxy.zip nvpproxy
@@ -32,6 +33,7 @@ iptables -I INPUT -p tcp --dport 6688 -j ACCEPT
 start-stop-daemon -S -q -b -m -p /tmp/var/npvproxy.pid -x /jffs/nvpproxy -- -port=6688 -proxy=127.0.0.1:1194
 EOF
 chmod +x /jffs/scripts/init-start
+```
 -------------------------------------------------命令结束
 开启openvpn.导出配置文件.在里面添加代码
 ////联通-例如开始:
